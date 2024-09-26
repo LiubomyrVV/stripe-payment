@@ -17,7 +17,7 @@ export const createPaymentIntent = createAsyncThunk(
     'payment/createPaymentIntent',
     async (amount: number, thunkAPI) => {
         try {
-            const response = await axios.post('/create-payment-intent', { amount });
+            const response = await axios.post('http://localhost:5000/create-payment-intent', { amount });
             return response.data.clientSecret;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);

@@ -5,7 +5,7 @@ import { Elements, CardElement, useStripe, useElements } from '@stripe/react-str
 import { createPaymentIntent } from './paymentSlice';
 import { AppDispatch, RootState } from '../../store/store';
 
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY as string);
+const stripePromise = loadStripe(import.meta.env.REACT_APP_STRIPE_PUBLISHABLE_KEY as string);
 
 const CheckoutForm: React.FC = () => {
     const stripe = useStripe();
@@ -14,7 +14,7 @@ const CheckoutForm: React.FC = () => {
     const { clientSecret, loading, error } = useSelector((state: RootState) => state.payment);
 
     useEffect(() => {
-        dispatch(createPaymentIntent(0)); // Amount in cents
+        dispatch(createPaymentIntent(1)); // Amount in cents
     }, [dispatch]);
 
     const handleSubmit = async (event: React.FormEvent) => {
